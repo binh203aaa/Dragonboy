@@ -24,8 +24,8 @@ namespace Mod
             if (Char.myCharz().cPower > 2000000 || (Char.myCharz().cPower > 1500000 && TileMap.mapID != 111))
             {
                 isAutoT77 = false;
-                ModMenuMain.modMenuItemBools[6].Value = false;
-                ModMenuMain.modMenuItemBools[6].isDisabled = true;
+                ModMenuMain.autoT77.Value = false;
+                ModMenuMain.autoT77.isDisabled = true;
                 GameScr.info1.addInfo("Đã up Tàu Pảy Pảy xong!", 0);
                 return;
             }

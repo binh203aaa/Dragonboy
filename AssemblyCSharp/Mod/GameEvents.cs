@@ -405,7 +405,7 @@ namespace Mod
 
         public static bool onPaintBgGameScr(mGraphics g)
         {
-            if (CustomBackground.isEnabled && CustomBackground.listBackgroundImages.Count > 0 && !ModMenuMain.modMenuItemBools[8].isDisabled)
+            if (CustomBackground.isEnabled && CustomBackground.listBackgroundImages.Count > 0 && !ModMenuMain.customBackground.isDisabled)
             {
                 CustomBackground.paint(g);
                 return true;

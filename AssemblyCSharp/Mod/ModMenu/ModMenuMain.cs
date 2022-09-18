@@ -41,7 +41,7 @@ namespace Mod.ModMenu
             new ModMenuItemBoolean("Ảnh nền tùy chỉnh", "Thay thế nền của game bằng ảnh tùy chỉnh (ảnh sẽ được tự động điều chỉnh cho vừa kích thước màn hình)",
                 rmsName: "iscustombackground", isDisabled: false, disabledReason: "Bạn cần tắt chức năng \"Giảm đồ họa\"!");
 
-        public static ModMenuItemBoolean autoTrain =
+        public static ModMenuItemBoolean tanSat =
             new ModMenuItemBoolean("Tàn sát", "Bật/tắt tự động đánh quái",
                 isDisabled: false, disabledReason: "Bạn đang bật auto T77 hoặc auto up SS!");
 
@@ -57,7 +57,7 @@ namespace Mod.ModMenu
             new ModMenuItemBoolean("Tự động nhặt vật phẩm", "Bật/tắt tự động nhặt vật phẩm",
                 defaultValue: true, rmsName: "isautopick", isDisabled: false, disabledReason: "Bạn đang bật auto T77 hoặc auto up SS!");
 
-        public static ModMenuItemBoolean pickMyItemOnly =
+        public static ModMenuItemBoolean justPickMyItem =
             new ModMenuItemBoolean("Không nhặt đồ của người khác", "Bật/tắt lọc không nhặt vật phẩm của người khác",
                 defaultValue: true, rmsName: "ispickmyitemonly");
 
@@ -65,13 +65,10 @@ namespace Mod.ModMenu
             new ModMenuItemBoolean("Giới hạn số lần nhặt", "Bật/tắt giới hạn số lần tự động nhặt một vật phẩm",
                 defaultValue: true, rmsName: "islimitpicktimes");
 
-        /// <summary>
-        /// Thêm bật/tắt chức năng mod ở đây
-        /// </summary>
         public static ModMenuItemBoolean[] modMenuItemBools = new ModMenuItemBoolean[]
         {
             vsync, showInfoChar, autoAttack, showListChar, showListPet, autoSS, autoT77, showCideRange, customBackground,
-            autoTrain, neSieuQuai, vuotDiaHinh, autoPickItem, pickMyItemOnly, limitPickItemTimes
+            tanSat, neSieuQuai, vuotDiaHinh, autoPickItem, justPickMyItem, limitPickItemTimes
         };
 
         /// <summary>
@@ -117,8 +114,12 @@ namespace Mod.ModMenu
 
         public static void SaveData()
         {
-            foreach (ModMenuItemBoolean modMenuItem in modMenuItemBools) if (!string.IsNullOrEmpty(modMenuItem.RMSName)) Utilities.saveRMSBool(modMenuItem.RMSName, modMenuItem.Value);
-            foreach (ModMenuItemInt modMenuItem in modMenuItemInts) if (!string.IsNullOrEmpty(modMenuItem.RMSName)) Utilities.saveRMSInt(modMenuItem.RMSName, modMenuItem.SelectedValue);
+            foreach (ModMenuItemBoolean modMenuItem in modMenuItemBools) 
+                if (!string.IsNullOrEmpty(modMenuItem.RMSName)) 
+                    Utilities.saveRMSBool(modMenuItem.RMSName, modMenuItem.Value);
+            foreach (ModMenuItemInt modMenuItem in modMenuItemInts) 
+                if (!string.IsNullOrEmpty(modMenuItem.RMSName)) 
+                    Utilities.saveRMSInt(modMenuItem.RMSName, modMenuItem.SelectedValue);
         }
 
         public static void LoadData()

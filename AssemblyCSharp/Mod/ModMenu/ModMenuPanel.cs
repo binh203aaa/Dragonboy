@@ -399,21 +399,21 @@ namespace Mod.ModMenu
 
         public static void onModMenuBoolsValueChanged()
         {
-            QualitySettings.vSyncCount = ModMenuMain.modMenuItemBools[0].Value ? 1 : 0;
-            CharEffect.isEnabled = ModMenuMain.modMenuItemBools[1].Value;
-            AutoAttack.gI.toggle(ModMenuMain.modMenuItemBools[2].Value);
-            ListCharsInMap.isEnabled = ModMenuMain.modMenuItemBools[3].Value;
-            ListCharsInMap.isShowPet = ModMenuMain.modMenuItemBools[4].Value;
-            AutoSS.isAutoSS = ModMenuMain.modMenuItemBools[5].Value;
-            AutoT77.isAutoT77 = ModMenuMain.modMenuItemBools[6].Value;
-            SuicideRange.isShowSuicideRange = ModMenuMain.modMenuItemBools[7].Value;
-            CustomBackground.isEnabled = ModMenuMain.modMenuItemBools[8].Value;
-            Pk9rPickMob.IsTanSat = ModMenuMain.modMenuItemBools[9].Value;
-            Pk9rPickMob.IsNeSieuQuai = ModMenuMain.modMenuItemBools[10].Value;
-            Pk9rPickMob.IsVuotDiaHinh = ModMenuMain.modMenuItemBools[11].Value;
-            Pk9rPickMob.IsAutoPickItems = ModMenuMain.modMenuItemBools[12].Value;
-            Pk9rPickMob.IsItemMe = ModMenuMain.modMenuItemBools[13].Value;
-            Pk9rPickMob.IsLimitTimesPickItem = ModMenuMain.modMenuItemBools[14].Value;
+            QualitySettings.vSyncCount = ModMenuMain.vsync.Value ? 1 : 0;
+            CharEffect.isEnabled = ModMenuMain.showInfoChar.Value;
+            AutoAttack.gI.toggle(ModMenuMain.autoAttack.Value);
+            ListCharsInMap.isEnabled = ModMenuMain.showListChar.Value;
+            ListCharsInMap.isShowPet = ModMenuMain.showListPet.Value;
+            AutoSS.isAutoSS = ModMenuMain.autoSS.Value;
+            AutoT77.isAutoT77 = ModMenuMain.autoT77.Value;
+            SuicideRange.isShowSuicideRange = ModMenuMain.showCideRange.Value;
+            CustomBackground.isEnabled = ModMenuMain.customBackground.Value;
+            Pk9rPickMob.IsTanSat = ModMenuMain.tanSat.Value;
+            Pk9rPickMob.IsNeSieuQuai = ModMenuMain.neSieuQuai.Value;
+            Pk9rPickMob.IsVuotDiaHinh = ModMenuMain.vuotDiaHinh.Value;
+            Pk9rPickMob.IsAutoPickItems = ModMenuMain.autoPickItem.Value;
+            Pk9rPickMob.IsItemMe = ModMenuMain.justPickMyItem.Value;
+            Pk9rPickMob.IsLimitTimesPickItem = ModMenuMain.limitPickItemTimes.Value;
 
             manageDisabledModMenuItems();
         }
@@ -423,7 +423,7 @@ namespace Mod.ModMenu
             if (ModMenuMain.modMenuItemInts[0].SelectedValue < 5 || ModMenuMain.modMenuItemInts[0].SelectedValue > 60)
                 ModMenuMain.modMenuItemInts[0].SelectedValue = 60;
             Application.targetFrameRate = ModMenuMain.modMenuItemInts[0].SelectedValue;
-            
+
             if (ModMenuMain.modMenuItemInts[2].SelectedValue == 2)
             {
                 AutoGoback.infoGoback = new AutoGoback.InfoGoback(TileMap.mapID, TileMap.zoneID, Char.myCharz().cx, Char.myCharz().cy);
@@ -442,17 +442,19 @@ namespace Mod.ModMenu
 
         public static void manageDisabledModMenuItems()
         {
-            ModMenuMain.modMenuItemBools[4].isDisabled = !ModMenuMain.modMenuItemBools[3].Value;
-            if (Char.myCharz().taskMaint != null) ModMenuMain.modMenuItemBools[5].isDisabled = Char.myCharz().taskMaint.taskId > 11;
-            if (Char.myCharz().cPower > 2000000 || (Char.myCharz().cPower > 1500000 && TileMap.mapID != 111) || (Char.myCharz().taskMaint != null && Char.myCharz().taskMaint.taskId < 9)) ModMenuMain.modMenuItemBools[6].isDisabled = true;
-            else ModMenuMain.modMenuItemBools[6].isDisabled = false;
-            ModMenuMain.modMenuItemBools[8].isDisabled = ModMenuMain.modMenuItemInts[1].SelectedValue > 0;
-            ModMenuMain.modMenuItemBools[9].isDisabled = AutoSS.isAutoSS || AutoT77.isAutoT77;
+            ModMenuMain.showListPet.isDisabled = !ModMenuMain.showListChar.Value;
+            var mychar = Char.myCharz();
+            if (mychar.taskMaint != null)
+                ModMenuMain.autoSS.isDisabled = mychar.taskMaint.taskId > 11;
+            ModMenuMain.autoT77.isDisabled = mychar.cPower > 2000000 || (mychar.cPower > 1500000 && TileMap.mapID != 111) || mychar.taskMaint != null && mychar.taskMaint.taskId < 9;
 
-            ModMenuMain.modMenuItemInts[0].isDisabled = ModMenuMain.modMenuItemBools[0].Value;
-            ModMenuMain.modMenuItemInts[2].isDisabled = ModMenuMain.modMenuItemBools[5].Value || ModMenuMain.modMenuItemBools[6].Value;
+            ModMenuMain.customBackground.isDisabled = ModMenuMain.modMenuItemInts[1].SelectedValue > 0;
+            ModMenuMain.tanSat.isDisabled = AutoSS.isAutoSS || AutoT77.isAutoT77;
+
+            ModMenuMain.modMenuItemInts[0].isDisabled = ModMenuMain.vsync.Value;
+            ModMenuMain.modMenuItemInts[2].isDisabled = ModMenuMain.autoSS.Value || ModMenuMain.autoT77.Value;
             if (ModMenuMain.modMenuItemInts[2].isDisabled) ModMenuMain.modMenuItemInts[2].SelectedValue = 0;
-            ModMenuMain.modMenuItemInts[4].isDisabled = !Char.myCharz().havePet || ModMenuMain.modMenuItemBools[5].Value || ModMenuMain.modMenuItemBools[6].Value;
+            ModMenuMain.modMenuItemInts[4].isDisabled = !mychar.havePet || ModMenuMain.autoSS.Value || ModMenuMain.autoT77.Value;
             if (ModMenuMain.modMenuItemInts[4].isDisabled) ModMenuMain.modMenuItemInts[4].SelectedValue = 0;
             ModMenuMain.modMenuItemInts[5].isDisabled = ModMenuMain.modMenuItemInts[4].SelectedValue == 0;
         }
