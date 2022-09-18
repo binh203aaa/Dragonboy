@@ -234,7 +234,7 @@ public class Panel : IActionListener, IChatable
 		new string[1][] { new string[1] { string.Empty } },
 		new string[1][] { new string[1] { string.Empty } },
 		new string[1][] { new string[1] { string.Empty } },
-    };
+	};
 
 	private static sbyte BOX_BAG = 0;
 
@@ -1893,9 +1893,9 @@ public class Panel : IActionListener, IChatable
 				updateKeyAuto();
 				break;
 			default:
-                updateKeyScrollView();
+				updateKeyScrollView();
 				break;
-            }
+			}
 			GameCanvas.clearKeyHold();
 			for (int i = 0; i < GameCanvas.keyPressed.Length; i++)
 			{
@@ -2899,7 +2899,7 @@ public class Panel : IActionListener, IChatable
 		default:
 			ModMenuPanel.setTabModMenuMain();
 			break;
-        }
+		}
 		selected = lastSelect[currentTabIndex];
 	}
 
@@ -5849,9 +5849,9 @@ public class Panel : IActionListener, IChatable
 		case 6:
 			break;
 		default:
-            SmallImage.drawSmallImage(g, Char.myCharz().avatarz(), X + 25, 50, 0, 33);
-            paintToolInfo(g);
-            break;
+			SmallImage.drawSmallImage(g, Char.myCharz().avatarz(), X + 25, 50, 0, 33);
+			paintToolInfo(g);
+			break;
 		}
 	}
 
@@ -5860,12 +5860,12 @@ public class Panel : IActionListener, IChatable
 		switch (status)
 		{
 			case 0: return mResources.follow; 
-            case 1: return mResources.defend; 
-            case 2: return mResources.attack; 
-            case 3: return mResources.gohome; 
-            default: return "aaa"; 
-        }
-    }
+			case 1: return mResources.defend; 
+			case 2: return mResources.attack; 
+			case 3: return mResources.gohome; 
+			default: return "aaa"; 
+		}
+	}
 
 	private void paintPetStatusInfo(mGraphics g)
 	{
@@ -6556,7 +6556,7 @@ public class Panel : IActionListener, IChatable
 					doFireAuto();
 					break;
 				default:
-                    ModMenuPanel.doFireModMenuMain();
+					ModMenuPanel.doFireModMenuMain();
 					break;
 				}
 			}
@@ -7058,7 +7058,7 @@ public class Panel : IActionListener, IChatable
 			switch (selected)
 			{
 			case 0:
-                ModMenuPanel.setTypeModMenu();
+				ModMenuPanel.setTypeModMenu();
 				break;
 			case 1:
 				doRada();
@@ -7137,10 +7137,10 @@ public class Panel : IActionListener, IChatable
 		}
 		switch (selected)
 		{
-        case 0:
-            ModMenuPanel.setTypeModMenu();
-            break;
-        case 1:
+		case 0:
+			ModMenuPanel.setTypeModMenu();
+			break;
+		case 1:
 			doRada();
 			break;
 		case 2:
@@ -7267,22 +7267,22 @@ public class Panel : IActionListener, IChatable
 	private void doFirePet()
 	{
 		InfoDlg.showWait();
-        if (GameCanvas.w > 2 * WIDTH_PANEL)
-        {
-            GameCanvas.panel2 = new Panel();
-            GameCanvas.panel2.tabName[7] = new string[1][] { new string[1] { string.Empty } };
-            GameCanvas.panel2.setTypeBodyOnly();
-            GameCanvas.panel2.show();
-            GameCanvas.panel.setTypePetMain();
-            GameCanvas.panel.show();
-        }
-        else
-        {
-            GameCanvas.panel.tabName[21] = mResources.petMainTab;
-            GameCanvas.panel.setTypePetMain();
-            GameCanvas.panel.show();
-        }
-        timeShow = 20;
+		if (GameCanvas.w > 2 * WIDTH_PANEL)
+		{
+			GameCanvas.panel2 = new Panel();
+			GameCanvas.panel2.tabName[7] = new string[1][] { new string[1] { string.Empty } };
+			GameCanvas.panel2.setTypeBodyOnly();
+			GameCanvas.panel2.show();
+			GameCanvas.panel.setTypePetMain();
+			GameCanvas.panel.show();
+		}
+		else
+		{
+			GameCanvas.panel.tabName[21] = mResources.petMainTab;
+			GameCanvas.panel.setTypePetMain();
+			GameCanvas.panel.show();
+		}
+		timeShow = 20;
 	}
 
 	private void searchClan()
@@ -9703,11 +9703,11 @@ public class Panel : IActionListener, IChatable
 		{
 			case 4: return 1269146;
 			case 1: return 2786816;
-            case 5: return 13279744;
-            case 3: return 12537346;
-            case 2: return 7078041;
-            case 6: return 11599872;
-            default: return -1;
+			case 5: return 13279744;
+			case 3: return 12537346;
+			case 2: return 7078041;
+			case 6: return 11599872;
+			default: return -1;
 		}
 	}
 
@@ -9822,23 +9822,23 @@ public class Panel : IActionListener, IChatable
 			switch (id)
 			{
 				case 0: return mFont.bigNumber_While;
-                case 1: return mFont.bigNumber_green;
-                case 3: return mFont.bigNumber_orange;
-                case 4: return mFont.bigNumber_blue;
-                case 5: return mFont.bigNumber_yellow;
-                case 6: return mFont.bigNumber_red; 
+				case 1: return mFont.bigNumber_green;
+				case 3: return mFont.bigNumber_orange;
+				case 4: return mFont.bigNumber_blue;
+				case 5: return mFont.bigNumber_yellow;
+				case 6: return mFont.bigNumber_red; 
 				default: return mFont.bigNumber_While; 
 			};
 		}
 		switch (id)
 		{
-            case 0: return mFont.tahoma_7b_white;
-            case 1: return mFont.tahoma_7b_green;
-            case 3: return mFont.tahoma_7b_yellowSmall2;
-            case 4: return mFont.tahoma_7b_blue;
-            case 5: return mFont.tahoma_7b_yellow;
-            case 6: return mFont.tahoma_7b_red;
-            case 7: return mFont.tahoma_7b_dark; 
+			case 0: return mFont.tahoma_7b_white;
+			case 1: return mFont.tahoma_7b_green;
+			case 3: return mFont.tahoma_7b_yellowSmall2;
+			case 4: return mFont.tahoma_7b_blue;
+			case 5: return mFont.tahoma_7b_yellow;
+			case 6: return mFont.tahoma_7b_red;
+			case 7: return mFont.tahoma_7b_dark; 
 			default: return mFont.tahoma_7b_white; 
 		};
 	}

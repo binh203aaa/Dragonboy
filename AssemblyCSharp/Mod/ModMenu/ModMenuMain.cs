@@ -116,7 +116,7 @@ namespace Mod.ModMenu
         {
             foreach (ModMenuItemBoolean modMenuItem in modMenuItemBools) 
                 if (!string.IsNullOrEmpty(modMenuItem.RMSName)) 
-                    Utilities.saveRMSBool(modMenuItem.RMSName, modMenuItem.Value);
+                    Utilities.saveRMSBool(modMenuItem.RMSName, modMenuItem.value);
             foreach (ModMenuItemInt modMenuItem in modMenuItemInts) 
                 if (!string.IsNullOrEmpty(modMenuItem.RMSName)) 
                     Utilities.saveRMSInt(modMenuItem.RMSName, modMenuItem.SelectedValue);
@@ -147,14 +147,14 @@ namespace Mod.ModMenu
         {
             foreach (ModMenuItemBoolean modMenuItem in modMenuItemBools)
             {
-                if (modMenuItem.RMSName == rmsName) return modMenuItem.Value;
+                if (modMenuItem.RMSName == rmsName) return modMenuItem.value;
             }
             throw new Exception("Not found any ModMenuItemBoolean with RMSName \"" + rmsName + "\"!");
         }
 
         public static bool getStatusBool(int index)
         {
-            return modMenuItemBools[index].Value;
+            return modMenuItemBools[index].value;
         }
 
         public static int getStatusInt(string rmsName)

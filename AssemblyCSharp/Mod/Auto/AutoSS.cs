@@ -34,7 +34,7 @@ namespace Mod
             if (Char.myCharz().taskMaint.taskId > 11)
             {
                 GameScr.info1.addInfo("Đã up sơ sinh xong!", 0);
-                ModMenuMain.autoSS.Value = false;
+                ModMenuMain.autoSS.value = false;
                 ModMenuMain.autoSS.isDisabled = true;
                 isAutoSS = false;
                 return;
