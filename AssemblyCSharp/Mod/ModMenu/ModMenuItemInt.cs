@@ -10,7 +10,7 @@ namespace Mod.ModMenu
     {
         public string Title { get; set; }
 
-        public string[] Values { get; set; }
+        public string[] strValues { get; set; }
 
         public string Description { get; set; }
 
@@ -22,13 +22,13 @@ namespace Mod.ModMenu
 
         public string DisabledReason { get; set; }
 
-        public ModMenuItemInt(string title, string[] values = null, string description = "", int selectedValue = 0, string rmsName = "", bool isDisabled = false, string disabledReason = "")
+        public ModMenuItemInt(string title, string[] strValues = null, string description = "", int defaultValue = 0, string rmsName = "", bool isDisabled = false, string disabledReason = "")
         {
-            if (values == null && string.IsNullOrEmpty(description)) throw new ArgumentException("Values and description cannot be null at the same time");
+            if (strValues == null && string.IsNullOrEmpty(description)) throw new ArgumentException("Values and description cannot be null at the same time");
             Title = title;
-            Values = values;
+            this.strValues = strValues;
             Description = description;
-            SelectedValue = selectedValue;
+            SelectedValue = defaultValue;
             RMSName = rmsName;
             this.isDisabled = isDisabled;
             DisabledReason = disabledReason;
@@ -38,22 +38,22 @@ namespace Mod.ModMenu
         {
             if (obj is ModMenuItemInt modMenuItem)
             {
-                return modMenuItem.Title == Title && modMenuItem.Values == Values && modMenuItem.SelectedValue == SelectedValue && modMenuItem.RMSName == RMSName;
+                return modMenuItem.Title == Title && modMenuItem.strValues == strValues && modMenuItem.SelectedValue == SelectedValue && modMenuItem.RMSName == RMSName;
             }
             return false;
         }
 
         public string getSelectedValue()
         {
-            return Values[SelectedValue];
+            return strValues[SelectedValue];
         }
 
         public void SwitchSelection()
         {
-            if (Values != null)
+            if (strValues != null)
             {
                 SelectedValue++;
-                if (SelectedValue > Values.Length - 1) SelectedValue = 0;
+                if (SelectedValue > strValues.Length - 1) SelectedValue = 0;
             }
             ModMenuPanel.onModMenuIntsValueChanged();
         }
@@ -68,7 +68,7 @@ namespace Mod.ModMenu
         {
             int hashCode = -1820188900;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Title);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Values);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(strValues);
             hashCode = hashCode * -1521134295 + SelectedValue.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(RMSName);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Description);

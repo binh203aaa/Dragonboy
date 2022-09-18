@@ -125,7 +125,7 @@ namespace Mod.ModMenu
             if (GameCanvas.panel.selected < 0) return;
             int selected = GameCanvas.panel.selected;
             if (ModMenuMain.modMenuItemInts[selected].isDisabled) return;
-            if (ModMenuMain.modMenuItemInts[selected].Values != null) ModMenuMain.modMenuItemInts[selected].SwitchSelection();
+            if (ModMenuMain.modMenuItemInts[selected].strValues != null) ModMenuMain.modMenuItemInts[selected].SwitchSelection();
             else
             {
                 ChatTextField.gI().strChat = ModMenuMain.inputModMenuItemInts[selected][0];
@@ -288,7 +288,7 @@ namespace Mod.ModMenu
                 {
                     string description, str;
                     mFont.tahoma_7_green2.drawString(g, i + 1 + ". " + modMenuItem.Title, num + 5, num2, 0);
-                    if (modMenuItem.Values != null)
+                    if (modMenuItem.strValues != null)
                     {
                         str = modMenuItem.getSelectedValue();
                         if (mFont.tahoma_7_blue.getWidth(str) > 160)
@@ -420,8 +420,10 @@ namespace Mod.ModMenu
 
         public static void onModMenuIntsValueChanged()
         {
-            if (ModMenuMain.modMenuItemInts[0].SelectedValue < 5 || ModMenuMain.modMenuItemInts[0].SelectedValue > 60) ModMenuMain.modMenuItemInts[0].SelectedValue = 60;
+            if (ModMenuMain.modMenuItemInts[0].SelectedValue < 5 || ModMenuMain.modMenuItemInts[0].SelectedValue > 60)
+                ModMenuMain.modMenuItemInts[0].SelectedValue = 60;
             Application.targetFrameRate = ModMenuMain.modMenuItemInts[0].SelectedValue;
+            
             if (ModMenuMain.modMenuItemInts[2].SelectedValue == 2)
             {
                 AutoGoback.infoGoback = new AutoGoback.InfoGoback(TileMap.mapID, TileMap.zoneID, Char.myCharz().cx, Char.myCharz().cy);

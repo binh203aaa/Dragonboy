@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
 
 namespace Mod.ModMenu
 {
@@ -10,27 +7,71 @@ namespace Mod.ModMenu
     {
         public const int TYPE_MOD_MENU = 26;
 
+        public static ModMenuItemBoolean vsync = 
+            new ModMenuItemBoolean("Vsync", "Tắt Vsync nếu bạn muốn điều chỉnh FPS!",
+                defaultValue: true, rmsName: "isvsync");
+
+        public static ModMenuItemBoolean showInfoChar = 
+            new ModMenuItemBoolean("Hiện thông tin nhân vật", "Hiện gần chính xác thời gian NRD, khiên, khỉ, huýt sáo... của nhân vật đang focus",
+                defaultValue: true, rmsName: "isshowinfochar");
+
+        public static ModMenuItemBoolean autoAttack = new ModMenuItemBoolean("Tự đánh", "Bật/tắt tự đánh");
+
+        public static ModMenuItemBoolean showListChar =
+            new ModMenuItemBoolean("Hiện danh sách nhân vật", "Hiện danh sách nhân vật trong map",
+                rmsName: "isshowlistchar");
+
+        public static ModMenuItemBoolean showListPet =
+            new ModMenuItemBoolean("Hiện đệ tử trong danh sách", "Hiện đệ tử trong danh sách nhân vật trong map (đệ tử không có sư phụ trong map không được hiển thị)",
+                rmsName: "isshowlistpet", isDisabled: true, disabledReason: "Bạn chưa bật chức năng \"Hiện danh sách nhân vật\"!");
+
+        public static ModMenuItemBoolean autoSS =
+            new ModMenuItemBoolean("Auto up SS", "Auto up acc sơ sinh đến nhiệm vụ vào bang",
+                isDisabled: true, disabledReason: "Bạn đã qua nhiệm vụ sơ sinh!");
+
+        public static ModMenuItemBoolean autoT77 =
+            new ModMenuItemBoolean("Auto T77", "Auto up Tàu Pảy Pảy",
+                isDisabled: true, disabledReason: "Bạn không thể vào map Đông Karin!");
+
+        public static ModMenuItemBoolean showCideRange = 
+            new ModMenuItemBoolean("Hiện khoảng cách bom", "Hiển thị người, quái, boss... trong tầm bom",
+                rmsName: "isshowsuiciderange");
+
+        public static ModMenuItemBoolean customBackground =
+            new ModMenuItemBoolean("Ảnh nền tùy chỉnh", "Thay thế nền của game bằng ảnh tùy chỉnh (ảnh sẽ được tự động điều chỉnh cho vừa kích thước màn hình)",
+                rmsName: "iscustombackground", isDisabled: false, disabledReason: "Bạn cần tắt chức năng \"Giảm đồ họa\"!");
+
+        public static ModMenuItemBoolean autoTrain =
+            new ModMenuItemBoolean("Tàn sát", "Bật/tắt tự động đánh quái",
+                isDisabled: false, disabledReason: "Bạn đang bật auto T77 hoặc auto up SS!");
+
+        public static ModMenuItemBoolean neSieuQuai =
+            new ModMenuItemBoolean("Né siêu quái khi tàn sát", "Tự động né siêu quái khi tàn sát",
+                defaultValue: true, rmsName: "isnesieuquaits");
+
+        public static ModMenuItemBoolean vuotDiaHinh =
+            new ModMenuItemBoolean("Vượt địa hình khi tàn sát", "Bật/tắt tự động vượt địa hình khi đang tàn sát",
+                defaultValue: true, rmsName: "isvuotdiahinh");
+
+        public static ModMenuItemBoolean autoPickItem =
+            new ModMenuItemBoolean("Tự động nhặt vật phẩm", "Bật/tắt tự động nhặt vật phẩm",
+                defaultValue: true, rmsName: "isautopick", isDisabled: false, disabledReason: "Bạn đang bật auto T77 hoặc auto up SS!");
+
+        public static ModMenuItemBoolean pickMyItemOnly =
+            new ModMenuItemBoolean("Không nhặt đồ của người khác", "Bật/tắt lọc không nhặt vật phẩm của người khác",
+                defaultValue: true, rmsName: "ispickmyitemonly");
+
+        public static ModMenuItemBoolean limitPickItemTimes = 
+            new ModMenuItemBoolean("Giới hạn số lần nhặt", "Bật/tắt giới hạn số lần tự động nhặt một vật phẩm",
+                defaultValue: true, rmsName: "islimitpicktimes");
+
         /// <summary>
         /// Thêm bật/tắt chức năng mod ở đây
         /// </summary>
         public static ModMenuItemBoolean[] modMenuItemBools = new ModMenuItemBoolean[]
         {
-            new ModMenuItemBoolean("Vsync", "Tắt Vsync nếu bạn muốn điều chỉnh FPS!", true, "isvsync"),
-            new ModMenuItemBoolean("Hiện thông tin nhân vật", "Hiện gần chính xác thời gian NRD, khiên, khỉ, huýt sáo... của nhân vật đang focus", true, "isshowinfochar"),
-            new ModMenuItemBoolean("Tự đánh", "Bật/tắt tự đánh"),
-            new ModMenuItemBoolean("Hiện danh sách nhân vật", "Hiện danh sách nhân vật trong map", false, "isshowlistchar"),
-            new ModMenuItemBoolean("Hiện đệ tử trong danh sách", "Hiện đệ tử trong danh sách nhân vật trong map (đệ tử không có sư phụ trong map không được hiển thị)", false, "isshowlistpet", true, "Bạn chưa bật chức năng \"Hiện danh sách nhân vật\"!"),
-            new ModMenuItemBoolean("Auto up SS", "Auto up acc sơ sinh đến nhiệm vụ vào bang", false, "", true, "Bạn đã qua nhiệm vụ sơ sinh!"),
-            new ModMenuItemBoolean("Auto T77", "Auto up Tàu Pảy Pảy", false, "", true, "Bạn không thể vào map Đông Karin!"),
-            new ModMenuItemBoolean("Hiện khoảng cách bom", "Hiển thị người, quái, boss... trong tầm bom", false, "isshowsuiciderange"),
-            new ModMenuItemBoolean("Ảnh nền tùy chỉnh", "Thay thế nền của game bằng ảnh tùy chỉnh (ảnh sẽ được tự động điều chỉnh cho vừa kích thước màn hình)", false, "iscustombackground", false, "Bạn cần tắt chức năng \"Giảm đồ họa\"!"),
-
-            new ModMenuItemBoolean("Tàn sát", "Bật/tắt tự động đánh quái", false, "", false, "Bạn đang bật auto T77 hoặc auto up SS!"),
-            new ModMenuItemBoolean("Né siêu quái khi tàn sát", "Tự động né siêu quái khi tàn sát", true, "isnesieuquaits"),
-            new ModMenuItemBoolean("Vượt địa hình khi tàn sát", "Bật/tắt tự động vượt địa hình khi đang tàn sát", true, "isvuotdiahinh"),
-            new ModMenuItemBoolean("Tự động nhặt vật phẩm", "Bật/tắt tự động nhặt vật phẩm", true, "isautopick", false, "Bạn đang bật auto T77 hoặc auto up SS!"),
-            new ModMenuItemBoolean("Không nhặt đồ của người khác", "Bật/tắt lọc không nhặt vật phẩm của người khác", true, "ispickmyitemonly"),
-            new ModMenuItemBoolean("Giới hạn số lần nhặt", "Bật/tắt giới hạn số lần tự động nhặt một vật phẩm", true,"islimitpicktimes"),
+            vsync, showInfoChar, autoAttack, showListChar, showListPet, autoSS, autoT77, showCideRange, customBackground,
+            autoTrain, neSieuQuai, vuotDiaHinh, autoPickItem, pickMyItemOnly, limitPickItemTimes
         };
 
         /// <summary>
@@ -38,13 +79,26 @@ namespace Mod.ModMenu
         /// </summary>
         public static ModMenuItemInt[] modMenuItemInts = new ModMenuItemInt[]
         {
-            new ModMenuItemInt("FPS", null, "FPS mục tiêu (cần tắt Vsync để thay đổi có hiệu lực)", 60, "targetfps", false, "Bạn chưa tắt Vsync!"),
-            new ModMenuItemInt("Giảm đồ họa", new string[]{"Đang tắt", "Đang bật mức 1", "Đang bật mức 2", "Đang bật mức 3"},"", 0, "levelreducegraphics"),
-            new ModMenuItemInt("Goback", new string[]{"Đang tắt", "Đang bật (goback tới chỗ cũ khi chết)", "Đang bật (goback tới map cố định)" }),
-            new ModMenuItemInt("Gõ tiếng Việt", new string[]{"Đang tắt", "Đang bật kiểu gõ TELEX", "Đang bật kiểu gõ VIQR", "Đang bật kiểu gõ VNI"}, "",0, "vietmode", false, "Bạn không biết gõ tiếng Việt!"),
-            new ModMenuItemInt("Auto up đệ tử", new string[]{"Đang tắt", "Đang bật up đệ thường", "Đang bật up đệ né siêu quái", "Đang bật up đệ kaioken"}, "", 0, "", false, "Bạn không có đệ tử!"),
-            new ModMenuItemInt("Đánh khi đệ cần", new string[]{"Đánh quái gần nhất", "Đánh đệ (tự động bật cờ xám)", "Đánh bản thân (tự động bật cờ xám)"}, "", 0, "modeautopet", true, "Bạn chưa bật chức năng \"Auto up đệ tử\"!"),
-            new ModMenuItemInt("Thời gian đổi ảnh nền", null, "Điều chỉnh thời gian thay đổi ảnh nền (giây)", 30, "backgroundinveral", false, "Bạn chưa bật chức năng \"Ảnh nền tùy chỉnh\"!"),
+            new ModMenuItemInt("FPS", 
+                description: "FPS mục tiêu (cần tắt Vsync để thay đổi có hiệu lực)",
+                defaultValue: 60, rmsName: "targetfps", isDisabled: false, disabledReason: "Bạn chưa tắt Vsync!"),
+            new ModMenuItemInt("Giảm đồ họa",
+                strValues: new string[]{ "Đang tắt", "Đang bật mức 1", "Đang bật mức 2", "Đang bật mức 3"},
+                defaultValue: 0, rmsName: "levelreducegraphics"),
+            new ModMenuItemInt("Goback",
+                strValues: new string[]{ "Đang tắt", "Đang bật (goback tới chỗ cũ khi chết)", "Đang bật (goback tới map cố định)" }),
+            new ModMenuItemInt("Gõ tiếng Việt",
+                strValues: new string[]{ "Đang tắt", "Đang bật kiểu gõ TELEX", "Đang bật kiểu gõ VIQR", "Đang bật kiểu gõ VNI"},
+                defaultValue: 0, rmsName: "vietmode", isDisabled: false, disabledReason: "Bạn không biết gõ tiếng Việt!"),
+            new ModMenuItemInt("Auto up đệ tử",
+                strValues: new string[]{ "Đang tắt", "Đang bật up đệ thường", "Đang bật up đệ né siêu quái", "Đang bật up đệ kaioken"},
+                defaultValue: 0, rmsName: "", isDisabled: false, disabledReason: "Bạn không có đệ tử!"),
+            new ModMenuItemInt("Đánh khi đệ cần",
+                strValues: new string[]{ "Đánh quái gần nhất", "Đánh đệ (tự động bật cờ xám)", "Đánh bản thân (tự động bật cờ xám)" }, 
+                defaultValue: 0, rmsName: "modeautopet", isDisabled: true, disabledReason: "Bạn chưa bật chức năng \"Auto up đệ tử\"!"),
+            new ModMenuItemInt("Thời gian đổi ảnh nền", 
+                description: "Điều chỉnh thời gian thay đổi ảnh nền (giây)", 
+                defaultValue: 30, rmsName: "backgroundinveral", isDisabled: false, disabledReason: "Bạn chưa bật chức năng \"Ảnh nền tùy chỉnh\"!"),
         };
 
         public static ModMenuItemFunction[] modMenuItemFunctions = new ModMenuItemFunction[]

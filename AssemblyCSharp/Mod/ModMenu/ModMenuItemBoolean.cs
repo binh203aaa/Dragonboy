@@ -20,11 +20,11 @@ namespace Mod.ModMenu
 
         public string DisabledReason { get; set; }
 
-        public ModMenuItemBoolean(string title, string description, bool value = false, string rmsName = "", bool isDisabled = false, string disabledReason = "")
+        public ModMenuItemBoolean(string title, string description, bool defaultValue = false, string rmsName = "", bool isDisabled = false, string disabledReason = "")
         {
             Title = title;
             Description = description;
-            Value = value;
+            Value = defaultValue;
             RMSName = rmsName;
             this.isDisabled = isDisabled;
             DisabledReason = disabledReason;

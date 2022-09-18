@@ -9,18 +9,9 @@ namespace Mod
 
         protected override void update()
         {
-            var vMob = new MyVector();
-            var vChar = new MyVector();
-
-            var myChar = Char.myCharz();
-            if (myChar.mobFocus != null)
-                vMob.addElement(myChar.mobFocus);
-            else if (myChar.charFocus != null)
-                vChar.addElement(myChar.charFocus);
-
-            if (vMob.size() > 0 || vChar.size() > 0)
+            if (getMyFocus(out MyVector vMob, out MyVector vChar))
             {
-                var myskill = myChar.myskill;
+                var myskill = Char.myCharz().myskill;
                 long currentTimeMillis = mSystem.currentTimeMillis();
 
                 if (currentTimeMillis - myskill.lastTimeUseThisSkill > myskill.coolDown)
@@ -29,6 +20,22 @@ namespace Mod
                     myskill.lastTimeUseThisSkill = currentTimeMillis;
                 }
             }
+        }
+
+        private bool getMyFocus(out MyVector vMob, out MyVector vChar)
+        {
+            vMob = new MyVector();
+            vChar = new MyVector();
+
+            var myChar = Char.myCharz();
+            if (myChar.mobFocus != null)
+                vMob.addElement(myChar.mobFocus);
+            else if (myChar.charFocus != null)
+                vChar.addElement(myChar.charFocus);
+            else
+                return false;
+
+            return true;
         }
     }
 }

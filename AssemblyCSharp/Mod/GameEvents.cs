@@ -208,7 +208,7 @@ namespace Mod
             TeleportMenu.Update();
             if (GameCanvas.gameTick % (10 * Time.timeScale) == 0) Service.gI().petInfo();
             ListCharsInMap.update();
-            AutoGoback.update();
+            //TODO: Fix goback
             AutoSS.update();
             AutoT77.update();
             AutoPet.update();
