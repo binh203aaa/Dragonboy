@@ -60,9 +60,6 @@ namespace Mod.ModMenu
             this.w = GameCanvas.panel.wScroll;
             this.h = GameCanvas.panel.ITEM_HEIGHT - 1;
             
-            string str = mResources.status == "Trạng thái" ? "Đang " : (mResources.status + ": ");
-            int widthStrStatus = mFont.tahoma_7b_red.getWidth(str);
-
             if (!this.isDisabled)
                 g.setColor(this.isSelected ? 0xF9FF4A : 0xE7DFD2);
             else
@@ -73,7 +70,9 @@ namespace Mod.ModMenu
             mFont.tahoma_7_green2.drawString(g, this.index + 1 + ". " + this.Title, this.x + 5, this.y, 0);
 
             // paint description
-            //modMenuItem.Description.Length > 28 ? (modMenuItem.Description.Substring(0, 27) + "...") : modMenuItem.Description;
+            string str = mResources.status == "Trạng thái" ? "Đang " : (mResources.status + ": ");
+            int widthStrStatus = mFont.tahoma_7b_red.getWidth(str);
+
             if (this.isSelected && mFont.tahoma_7_blue.getWidth(this.description) > 145 - widthStrStatus && !GameCanvas.panel.isClose)
             {
                 TextInfo.paint(g, this.description, this.x + 5, this.y + 11, 145 - mFont.tahoma_7b_red.getWidth(str), 15, mFont.tahoma_7_blue);
